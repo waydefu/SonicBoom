@@ -93,13 +93,116 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         
+        // ★★★ 6 款商品詳細資料庫 (全規格升級版) ★★★
         const products = {
-            "wh-xm5": { name: "Sony WH-1000XM5", price: 10900, img: "images/wh-xm5.jpg", brand: "SONY FLAGSHIP", short: "無線降噪耳罩式耳機", desc: "搭載雙處理器與 8 個麥克風，實現前所未有的降噪效果。", specs: `<tr><td class="text-label">佩戴方式</td><td>耳罩式</td></tr><tr><td class="text-label">驅動單體</td><td>30mm</td></tr><tr><td class="text-label">防水</td><td>無</td></tr>` },
-            "wf-xm5": { name: "Sony WF-1000XM5", price: 8990, img: "images/wf-xm5.jpg", brand: "SONY WIRELESS", short: "真無線降噪耳機", desc: "Sony 史上最強降噪真無線耳機。搭載全新 Dynamic Driver X 驅動單體，人聲更清晰。", specs: `<tr><td class="text-label">佩戴方式</td><td>入耳式</td></tr><tr><td class="text-label">驅動單體</td><td>8.4mm Dynamic Driver X</td></tr><tr><td class="text-label">防水</td><td>IPX4</td></tr>` },
-            "wh-xm4": { name: "Sony WH-1000XM4", price: 7900, img: "images/wh-xm4.jpg", brand: "SONY CLASSIC", short: "經典降噪耳罩", desc: "經典可折疊設計，攜帶方便。HD 降噪處理器 QN1 提供優異的降噪效能。", specs: `<tr><td class="text-label">佩戴方式</td><td>耳罩式</td></tr><tr><td class="text-label">驅動單體</td><td>40mm</td></tr><tr><td class="text-label">防水</td><td>無</td></tr>` },
-            "az80": { name: "Technics EAH-AZ80", price: 9900, img: "images/az80.jpg", brand: "TECHNICS HI-FI", short: "旗艦真無線耳機", desc: "Technics 當家旗艦，搭載 10mm 鋁合金振膜單體。支援 LDAC 高解析音訊。", specs: `<tr><td class="text-label">佩戴方式</td><td>入耳式</td></tr><tr><td class="text-label">驅動單體</td><td>10mm 鋁合金</td></tr><tr><td class="text-label">防水</td><td>IPX4</td></tr>` },
-            "az100": { name: "Technics EAH-AZ100", price: 6500, img: "images/az100.jpg", brand: "TECHNICS PRO", short: "專業監聽耳機", desc: "採用獨家 10mm 磁流體振膜技術，提供極致的低頻下潛。", specs: `<tr><td class="text-label">佩戴方式</td><td>入耳式</td></tr><tr><td class="text-label">驅動單體</td><td>10mm 磁流體振膜</td></tr><tr><td class="text-label">防水</td><td>IPX4</td></tr>` },
-            "wf-xm4": { name: "Sony WF-1000XM4", price: 5990, img: "images/wf-xm4.jpg", brand: "SONY SALE", short: "降噪豆", desc: "搭載整合處理器 V1，降噪效能更上一層樓。", specs: `<tr><td class="text-label">佩戴方式</td><td>入耳式</td></tr><tr><td class="text-label">驅動單體</td><td>6mm</td></tr><tr><td class="text-label">防水</td><td>IPX4</td></tr>` }
+            "wh-xm5": { 
+                name: "Sony WH-1000XM5", 
+                price: 10900, 
+                img: "images/wh-xm5.jpg", 
+                brand: "SONY FLAGSHIP", 
+                short: "無線降噪耳罩式耳機", 
+                desc: "搭載雙處理器與 8 個麥克風，實現前所未有的降噪效果。全新 30mm 驅動單體，提供自然且完美的音質。自動降噪優化器能根據佩戴狀況與環境氣壓自動調整。",
+                specs: `
+                    <tr><td class="text-label">佩戴方式</td><td>耳罩式 (封閉動態)</td></tr>
+                    <tr><td class="text-label">驅動單體</td><td>30mm 特製碳纖維圓頂</td></tr>
+                    <tr><td class="text-label">頻率響應</td><td>4 Hz - 40,000 Hz</td></tr>
+                    <tr><td class="text-label">獨家處理器</td><td>整合處理器 V1 + 降噪處理器 QN1</td></tr>
+                    <tr><td class="text-label">電池續航力</td><td>30 小時 (NC 開) / 40 小時 (NC 關)</td></tr>
+                    <tr><td class="text-label">藍牙編碼</td><td>LDAC, AAC, SBC</td></tr>
+                    <tr><td class="text-label">重量</td><td>約 250g</td></tr>
+                    <tr><td class="text-label">通話功能</td><td>波束成形麥克風 (AI 降噪)</td></tr>
+                `
+            },
+            "wf-xm5": { 
+                name: "Sony WF-1000XM5", 
+                price: 8990, 
+                img: "images/wf-xm5.jpg", 
+                brand: "SONY WIRELESS", 
+                short: "真無線降噪耳機", 
+                desc: "Sony 史上最強降噪真無線耳機。搭載全新 Dynamic Driver X 驅動單體，人聲更清晰。骨傳導感應器與 AI 雜訊抑制，通話品質極致清晰。",
+                specs: `
+                    <tr><td class="text-label">佩戴方式</td><td>入耳式 (真無線)</td></tr>
+                    <tr><td class="text-label">驅動單體</td><td>8.4mm Dynamic Driver X</td></tr>
+                    <tr><td class="text-label">頻率響應</td><td>20 Hz - 40,000 Hz (LDAC)</td></tr>
+                    <tr><td class="text-label">獨家處理器</td><td>整合處理器 V2 + 降噪處理器 QN2e</td></tr>
+                    <tr><td class="text-label">電池續航力</td><td>8H (耳機) + 16H (充電盒)</td></tr>
+                    <tr><td class="text-label">防水等級</td><td>IPX4 (防潑水)</td></tr>
+                    <tr><td class="text-label">重量</td><td>約 5.9g x 2</td></tr>
+                    <tr><td class="text-label">藍牙版本</td><td>Bluetooth 5.3 (支援多點連線)</td></tr>
+                `
+            },
+            "wh-xm4": { 
+                name: "Sony WH-1000XM4", 
+                price: 7900, 
+                img: "images/wh-xm4.jpg", 
+                brand: "SONY CLASSIC", 
+                short: "經典降噪耳罩", 
+                desc: "經典可折疊設計，攜帶方便。HD 降噪處理器 QN1 提供優異的降噪效能。智慧免摘功能，說話時自動暫停音樂。",
+                specs: `
+                    <tr><td class="text-label">佩戴方式</td><td>耳罩式 (可折疊)</td></tr>
+                    <tr><td class="text-label">驅動單體</td><td>40mm 鍍鋁液晶高分子 (LCP)</td></tr>
+                    <tr><td class="text-label">頻率響應</td><td>4 Hz - 40,000 Hz</td></tr>
+                    <tr><td class="text-label">獨家處理器</td><td>HD 降噪處理器 QN1</td></tr>
+                    <tr><td class="text-label">電池續航力</td><td>30 小時 (NC 開) / 38 小時 (NC 關)</td></tr>
+                    <tr><td class="text-label">藍牙編碼</td><td>LDAC, AAC, SBC</td></tr>
+                    <tr><td class="text-label">重量</td><td>約 254g</td></tr>
+                    <tr><td class="text-label">特殊功能</td><td>Speak-to-Chat 聊天模式</td></tr>
+                `
+            },
+            "az80": { 
+                name: "Technics EAH-AZ80", 
+                price: 9900, 
+                img: "images/az80.jpg", 
+                brand: "TECHNICS HI-FI", 
+                short: "旗艦真無線耳機", 
+                desc: "Technics 當家旗艦，搭載 10mm 鋁合金振膜單體。支援 LDAC 高解析音訊。業界首創三裝置多點連接，辦公娛樂無縫切換。",
+                specs: `
+                    <tr><td class="text-label">佩戴方式</td><td>入耳式 (人體工學設計)</td></tr>
+                    <tr><td class="text-label">驅動單體</td><td>10mm 鋁合金振膜</td></tr>
+                    <tr><td class="text-label">頻率響應</td><td>20 Hz - 40,000 Hz (LDAC)</td></tr>
+                    <tr><td class="text-label">降噪技術</td><td>雙重混合降噪 (Dual Hybrid ANC)</td></tr>
+                    <tr><td class="text-label">電池續航力</td><td>7H (耳機) + 17H (充電盒)</td></tr>
+                    <tr><td class="text-label">連接技術</td><td>業界首創 3 裝置多點連接</td></tr>
+                    <tr><td class="text-label">防水等級</td><td>IPX4</td></tr>
+                    <tr><td class="text-label">通話技術</td><td>JustMyVoice™ 語音隔離</td></tr>
+                `
+            },
+            "az100": { 
+                name: "Technics EAH-AZ100", 
+                price: 6500, 
+                img: "images/az100.jpg", 
+                brand: "TECHNICS PRO", 
+                short: "專業監聽耳機", 
+                desc: "採用獨家 10mm 磁流體振膜技術，提供極致的低頻下潛與快速瞬態反應，專為專業監聽與 DJ 混音設計。",
+                specs: `
+                    <tr><td class="text-label">佩戴方式</td><td>入耳式 (專業監聽型)</td></tr>
+                    <tr><td class="text-label">驅動單體</td><td>10mm 磁流體振膜 (Magnetic Fluid)</td></tr>
+                    <tr><td class="text-label">頻率響應</td><td>5 Hz - 45,000 Hz (超廣音域)</td></tr>
+                    <tr><td class="text-label">最大輸入</td><td>3500 mW (高耐受度)</td></tr>
+                    <tr><td class="text-label">電池續航力</td><td>7H (耳機) + 18H (充電盒)</td></tr>
+                    <tr><td class="text-label">特殊模式</td><td>DJ 零延遲監聽模式</td></tr>
+                    <tr><td class="text-label">防水等級</td><td>IPX4</td></tr>
+                    <tr><td class="text-label">藍牙版本</td><td>Bluetooth 5.2 (aptX HD)</td></tr>
+                `
+            },
+            "wf-xm4": { 
+                name: "Sony WF-1000XM4", 
+                price: 5990, 
+                img: "images/wf-xm4.jpg", 
+                brand: "SONY SALE", 
+                short: "降噪豆", 
+                desc: "搭載整合處理器 V1，降噪效能更上一層樓。全新的噪音隔離耳塞套，提升被動降噪效果與佩戴穩定性。",
+                specs: `
+                    <tr><td class="text-label">佩戴方式</td><td>入耳式 (真無線)</td></tr>
+                    <tr><td class="text-label">驅動單體</td><td>6mm 高功率釹磁鐵</td></tr>
+                    <tr><td class="text-label">頻率響應</td><td>20 Hz - 40,000 Hz (LDAC)</td></tr>
+                    <tr><td class="text-label">獨家處理器</td><td>整合處理器 V1</td></tr>
+                    <tr><td class="text-label">電池續航力</td><td>8H (耳機) + 16H (充電盒)</td></tr>
+                    <tr><td class="text-label">充電功能</td><td>支援 Qi 無線充電</td></tr>
+                    <tr><td class="text-label">防水等級</td><td>IPX4</td></tr>
+                    <tr><td class="text-label">藍牙版本</td><td>Bluetooth 5.2</td></tr>
+                `
+            }
         };
 
         const params = new URLSearchParams(window.location.search);
@@ -158,3 +261,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

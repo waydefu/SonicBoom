@@ -9,171 +9,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
     <style>
-        :root {
-            --primary-gradient: linear-gradient(90deg, #00c6ff 0%, #0072ff 100%);
-            --glass-bg: rgba(20, 30, 40, 0.7);
-        }
-
-        /* 全域背景：深藍漸層 (與 index.html 統一) */
-        body {
-            background: linear-gradient(135deg, #16222A 0%, #3A6073 100%);
-            background-attachment: fixed;
-            color: #ffffff;
-            font-family: 'Noto Sans TC', sans-serif;
-            min-height: 100vh;
-        }
-
-        /* 導覽列 */
-        .navbar {
-            background: rgba(0, 0, 0, 0.8) !important;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .brand-logo {
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 2px;
-            color: #00c6ff;
-            text-shadow: 0 0 10px rgba(0, 198, 255, 0.8);
-        }
-
-        /* 產品區塊主容器 */
-        .product-container { margin-top: 50px; margin-bottom: 50px; }
-
-        /* 左側圖片區 */
-        .product-image-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .product-image-card img {
-            max-width: 100%;
-            max-height: 400px;
-            transition: transform 0.5s ease;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
-        }
-
+        :root { --primary-gradient: linear-gradient(90deg, #00c6ff 0%, #0072ff 100%); --glass-bg: rgba(20, 30, 40, 0.7); }
+        body { background: linear-gradient(135deg, #16222A 0%, #3A6073 100%); background-attachment: fixed; color: #ffffff; font-family: 'Noto Sans TC', sans-serif; min-height: 100vh; }
+        .navbar { background: rgba(0, 0, 0, 0.8) !important; backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .brand-logo { font-family: 'Orbitron', sans-serif; letter-spacing: 2px; color: #00c6ff; text-shadow: 0 0 10px rgba(0, 198, 255, 0.8); }
+        .product-image-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; text-align: center; height: 100%; display: flex; align-items: center; justify-content: center; }
+        .product-image-card img { max-width: 100%; max-height: 400px; transition: transform 0.5s ease; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); }
         .product-image-card:hover img { transform: scale(1.05) rotate(-5deg); }
-
-        /* 右側資訊區 */
-        .product-info {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .product-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .price-tag {
-            font-size: 2rem;
-            color: #00c6ff;
-            font-weight: bold;
-            text-shadow: 0 0 15px rgba(0, 198, 255, 0.4);
-        }
-
-        /* 規格圖示 */
-        .spec-icon {
-            text-align: center;
-            margin-right: 15px;
-            background: rgba(255,255,255,0.1);
-            padding: 10px;
-            border-radius: 10px;
-            width: 80px;
-        }
-        .spec-icon i { font-size: 1.5rem; color: #00c6ff; margin-bottom: 5px; }
-        .spec-icon span { display: block; font-size: 0.8rem; color: #ccc; }
-
-        /* 數量選擇器 */
-        .quantity-selector {
-            width: 120px;
-            background: transparent;
-            border: 1px solid #555;
-            color: white;
-            text-align: center;
-        }
-        .quantity-selector:focus {
-            background: #222;
-            color: white;
-            border-color: #00c6ff;
-            box-shadow: none;
-        }
-
-        /* 按鈕樣式 */
-        .btn-gradient {
-            background: var(--primary-gradient);
-            border: none;
-            color: white;
-            font-weight: bold;
-            padding: 12px 30px;
-            border-radius: 50px;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
-        }
-        .btn-gradient:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(0, 198, 255, 0.8);
-            color: white;
-            background: linear-gradient(90deg, #00c6ff 20%, #0072ff 100%);
-        }
-
-        /* Tabs */
-        .nav-tabs { border-bottom: 1px solid rgba(255,255,255,0.2); }
-        .nav-link { color: #aaa; background: transparent; border: none; font-size: 1.1rem; }
-        .nav-link.active {
-            color: #00c6ff !important;
-            background: transparent !important;
-            border-bottom: 3px solid #00c6ff !important;
-            font-weight: bold;
-        }
-        .nav-link:hover { color: white; }
-        
-        .tab-content {
-            background: rgba(255,255,255,0.05);
-            padding: 30px;
-            border-radius: 0 0 15px 15px;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-top: none;
-        }
-
-        /* Toast */
+        .product-info { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(10px); border-radius: 20px; padding: 40px; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .price-tag { font-size: 2rem; color: #00c6ff; font-weight: bold; text-shadow: 0 0 15px rgba(0, 198, 255, 0.4); }
+        .btn-gradient { background: var(--primary-gradient); border: none; color: white; font-weight: bold; padding: 12px 30px; border-radius: 50px; transition: 0.3s; box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4); width: 100%; }
+        .btn-gradient:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(0, 198, 255, 0.8); color: white; background: linear-gradient(90deg, #00c6ff 20%, #0072ff 100%); }
         .toast-container { position: fixed; top: 80px; right: 20px; z-index: 9999; }
         .toast-custom { background: rgba(0, 20, 40, 0.95); color: white; border-left: 4px solid #00c6ff; }
+        .nav-tabs { border-bottom: 1px solid rgba(255,255,255,0.2); }
+        .nav-link { color: #aaa; background: transparent; border: none; font-size: 1.1rem; }
+        .nav-link.active { color: #00c6ff !important; background: transparent !important; border-bottom: 3px solid #00c6ff !important; font-weight: bold; }
+        .tab-content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 0 0 15px 15px; border: 1px solid rgba(255,255,255,0.1); border-top: none; }
     </style>
 </head>
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top py-3">
         <div class="container">
             <a class="navbar-brand brand-logo fs-3" href="index.html"><i class="fa-solid fa-wave-square"></i> SonicBoom</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto ms-4">
-                    <li class="nav-item"><a class="nav-link" href="index.html">回首頁</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">產品詳情</a></li>
-                </ul>
+                <ul class="navbar-nav me-auto ms-4"><li class="nav-item"><a class="nav-link" href="index.html">回首頁</a></li></ul>
                 <div class="d-flex align-items-center gap-3">
                     <span id="user-display" class="badge bg-info bg-opacity-25 border border-info px-3 py-2" style="display:none;"></span>
-                    
-                    <a href="cart.html" class="btn btn-outline-info rounded-circle px-3 py-2" title="我的購物車">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-
+                    <a href="cart.html" class="btn btn-outline-info rounded-circle px-3 py-2" title="我的購物車"><i class="fa-solid fa-cart-shopping"></i></a>
                     <a id="btn-login" class="btn btn-outline-light rounded-pill px-4" href="login.html">登入</a>
                     <button id="btn-logout" class="btn btn-outline-danger rounded-pill px-4" style="display:none;">登出</button>
                 </div>
@@ -181,182 +44,95 @@
         </div>
     </nav>
 
-    <div class="container product-container">
-        <nav aria-label="breadcrumb" class="mb-4">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-info">首頁</a></li>
-                <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-info">Sony 專區</a></li>
-                <li class="breadcrumb-item active text-white-50" aria-current="page">WH-1000XM5</li>
-            </ol>
-        </nav>
-
+    <div class="container product-container mt-5 mb-5">
         <div class="row g-5">
             <div class="col-lg-6">
                 <div class="product-image-card">
-                    <img src="images/wh-xm5.jpg" alt="Sony WH-1000XM5" id="main-product-img">
+                    <img id="p-img" src="" alt="Product">
                 </div>
             </div>
-
             <div class="col-lg-6">
                 <div class="product-info h-100 d-flex flex-column justify-content-center">
-                    <h5 class="text-info letter-spacing-2">FLAGSHIP MODEL</h5>
-                    <h1 class="product-title mb-2">Sony WH-1000XM5</h1>
-                    <p class="text-white-50">無線降噪耳罩式耳機 (黑色)</p>
-                    
-                    <div class="mb-4">
-                        <span class="price-tag">$10,900</span>
-                        <s class="text-muted ms-2">$11,900</s>
-                    </div>
-
-                    <div class="d-flex mb-4">
-                        <div class="spec-icon">
-                            <i class="fa-solid fa-ear-listen"></i>
-                            <span>主動降噪</span>
-                        </div>
-                        <div class="spec-icon">
-                            <i class="fa-solid fa-battery-full"></i>
-                            <span>30H 續航</span>
-                        </div>
-                        <div class="spec-icon">
-                            <i class="fa-brands fa-bluetooth-b"></i>
-                            <span>藍牙 5.2</span>
-                        </div>
-                    </div>
-
-                    <p class="mb-4 text-light opacity-75" style="line-height: 1.8;">
-                        搭載 Sony 全新開發的整合處理器 V1，釋放 HD 降噪處理器 QN1 的潛力。
-                        加上 4 個波束成形麥克風，精準收音，讓通話品質達到前所未有的清晰度。
-                    </p>
-
+                    <h5 class="text-info letter-spacing-2" id="p-brand">SONICBOOM</h5>
+                    <h1 class="product-title mb-2 fw-bold" id="p-name">Loading...</h1>
+                    <p class="text-white-50" id="p-desc-short">正在讀取商品資訊...</p>
+                    <div class="mb-4"><span class="price-tag" id="p-price">$0</span></div>
                     <div class="row g-3 align-items-end">
                         <div class="col-md-4">
                             <label class="form-label text-white-50 small">數量</label>
-                            <input type="number" class="form-control quantity-selector" value="1" min="1" max="5">
+                            <input type="number" class="form-control text-center" id="p-qty" value="1" min="1" max="5">
                         </div>
                         <div class="col-md-8">
-                            <button class="btn btn-gradient w-100 buy-btn">
-                                <i class="fa-solid fa-cart-shopping me-2"></i> 加入購物車
-                            </button>
+                            <button class="btn btn-gradient" id="btn-add-cart"><i class="fa-solid fa-cart-shopping me-2"></i> 加入購物車</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
+        
         <div class="row mt-5">
             <div class="col-12">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="desc-tab" data-bs-toggle="tab" data-bs-target="#desc" type="button">商品介紹</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="spec-tab" data-bs-toggle="tab" data-bs-target="#spec" type="button">詳細規格</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review" type="button">使用者評論 (5)</button>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="desc">
-                        <h4 class="text-info mb-3">業界領先的降噪功能</h4>
-                        <p>從飛機噪音到人聲，WH-1000XM5 配備的多個麥克風降噪功能，能阻擋比以往更多的高頻和中頻聲音。</p>
-                        <h4 class="text-info mb-3 mt-4">卓越音質</h4>
-                        <p>特殊設計的 30mm 驅動單體，輕巧堅固的圓頂採用碳纖維複合材料，可提高高頻靈敏度，帶來更自然的音質。</p>
-                    </div>
-                    <div class="tab-pane fade" id="spec">
-                        <table class="table table-dark table-striped table-hover">
-                            <tbody>
-                                <tr>
-                                    <td class="text-info fw-bold" width="30%">耳機類型</td>
-                                    <td>封閉式、動態</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-info fw-bold">驅動單體</td>
-                                    <td>30mm</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-info fw-bold">頻率響應</td>
-                                    <td>4 Hz - 40,000 Hz</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-info fw-bold">防水等級</td>
-                                    <td>無 (請勿於雨中使用)</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-info fw-bold">重量</td>
-                                    <td>約 250g</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="tab-pane fade" id="review">
-                        <div class="border-bottom border-secondary pb-3 mb-3">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="fw-bold">Jason Wu</h6>
-                                <div class="text-warning"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            </div>
-                            <p class="text-white-50 mb-0">降噪真的太強了，戴上去完全聽不到旁邊同事在講話，專注工作神器！</p>
-                        </div>
-                    </div>
-                </div>
+                <ul class="nav nav-tabs" id="myTab"><li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#desc">商品介紹</button></li></ul>
+                <div class="tab-content"><div class="tab-pane fade show active" id="desc"><p id="p-desc-long">商品詳細介紹載入中...</p></div></div>
             </div>
         </div>
     </div>
 
-    <footer class="mt-5 py-5 border-top border-secondary bg-black text-center text-white">
-        <h4 class="brand-logo mb-3">SonicBoom</h4>
-        <p class="text-muted">專業耳機評測與銷售 | 打造您的聽覺饗宴</p>
-        <p class="small text-muted">&copy; 2025 SonicBoom Audio. All Rights Reserved.</p>
-    </footer>
-
-    <div class="toast-container">
-        <div id="liveToast" class="toast toast-custom align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="d-flex">
-                <div class="toast-body fs-6"></div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-            </div>
-        </div>
-    </div>
+    <div class="toast-container"><div id="liveToast" class="toast toast-custom align-items-center"><div class="d-flex"><div class="toast-body fs-6"></div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div></div></div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-        // Firebase Config
-        const firebaseConfig = {
-            apiKey: "AIzaSyC-LcCfcPYCYAQZ7n45YCe6tCY_jb-ygvI",
-            authDomain: "sonicboom-shop.firebaseapp.com",
-            projectId: "sonicboom-shop",
-            storageBucket: "sonicboom-shop.firebasestorage.app",
-            messagingSenderId: "976804831944",
-            appId: "1:976804831944:web:6ede6a95196478bd49bbfd",
-            measurementId: "G-3FEKWL0QXZ"
-        };
-
+        const firebaseConfig = { apiKey: "AIzaSyC-LcCfcPYCYAQZ7n45YCe6tCY_jb-ygvI", authDomain: "sonicboom-shop.firebaseapp.com", projectId: "sonicboom-shop", storageBucket: "sonicboom-shop.firebasestorage.app", messagingSenderId: "976804831944", appId: "1:976804831944:web:6ede6a95196478bd49bbfd", measurementId: "G-3FEKWL0QXZ" };
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        
+        // 商品資料庫 (6個商品都在這)
+        const products = {
+            "wh-xm5": { name: "Sony WH-1000XM5", price: 10900, img: "images/wh-xm5.jpg", brand: "SONY FLAGSHIP", short: "無線降噪耳罩式耳機", desc: "業界最強降噪，30小時續航，舒適配戴體驗。" },
+            "wf-xm5": { name: "Sony WF-1000XM5", price: 8990, img: "images/wf-xm5.jpg", brand: "SONY WIRELESS", short: "真無線降噪耳機", desc: "雙處理器驅動，骨傳導收音，絕佳通話品質。" },
+            "wh-xm4": { name: "Sony WH-1000XM4", price: 7900, img: "images/wh-xm4.jpg", brand: "SONY CLASSIC", short: "經典降噪耳罩", desc: "可折疊設計，高CP值首選，支援多點連線。" },
+            "az80": { name: "Technics EAH-AZ80", price: 9900, img: "images/az80.jpg", brand: "TECHNICS HI-FI", short: "旗艦真無線耳機", desc: "發燒級音質，三點連線技術，人體工學設計。" },
+            "az100": { name: "Technics EAH-AZ100", price: 6500, img: "images/az100.jpg", brand: "TECHNICS PRO", short: "專業監聽耳機", desc: "強勁重低音，DJ 風格設計，耐用舒適。" },
+            "wf-xm4": { name: "Sony WF-1000XM4", price: 5990, img: "images/wf-xm4.jpg", brand: "SONY SALE", short: "降噪豆", desc: "整合處理器 V1，極致安靜，最後數量優惠中。" }
+        };
 
-        // Toast
-        function showToast(message, type='success') {
-            const toastEl = document.getElementById('liveToast');
-            const toastBody = toastEl.querySelector('.toast-body');
-            
-            if(type === 'success') {
-                toastBody.innerHTML = `<i class="fa-solid fa-circle-check text-info me-2"></i> ${message}`;
-            } else {
-                toastBody.innerHTML = `<i class="fa-solid fa-circle-exclamation text-warning me-2"></i> ${message}`;
-            }
-            
-            const toast = new bootstrap.Toast(toastEl);
-            toast.show();
+        // 讀取網址參數
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get('id') || "wh-xm5"; // 預設顯示 XM5
+        const product = products[productId];
+
+        // 顯示商品資訊
+        if (product) {
+            document.getElementById('p-img').src = product.img;
+            document.getElementById('p-name').innerText = product.name;
+            document.getElementById('p-brand').innerText = product.brand;
+            document.getElementById('p-price').innerText = "$" + product.price.toLocaleString();
+            document.getElementById('p-desc-short').innerText = product.short;
+            document.getElementById('p-desc-long').innerText = product.desc;
         }
 
-        // 登入監聽
+        // 加入購物車功能 (存入 LocalStorage)
+        document.getElementById('btn-add-cart').addEventListener('click', () => {
+            if(auth.currentUser) {
+                const qty = document.getElementById('p-qty').value;
+                // 儲存選擇的商品 ID 和數量
+                localStorage.setItem('cartItem', productId); 
+                localStorage.setItem('cartQty', qty);
+                
+                showToast(`成功加入購物車！ (${product.name})`);
+                setTimeout(() => { window.location.href = "cart.html"; }, 1000);
+            } else {
+                showToast("請先登入會員才能購買！", "warning");
+                setTimeout(() => { window.location.href = "login.html"; }, 1500);
+            }
+        });
+
+        // 通用功能
         onAuthStateChanged(auth, (user) => {
             const userDisplay = document.getElementById('user-display');
             const btnLogin = document.getElementById('btn-login');
             const btnLogout = document.getElementById('btn-logout');
-
             if (user) {
                 userDisplay.style.display = 'inline-block';
                 userDisplay.innerHTML = `<i class="fa-solid fa-user-astronaut me-2"></i> ${user.email.split('@')[0]}`;
@@ -368,27 +144,16 @@
                 btnLogout.style.display = 'none';
             }
         });
+        
+        document.getElementById('btn-logout').addEventListener('click', () => { if(confirm("確定要登出嗎？")) { signOut(auth).then(() => { window.location.reload(); }); } });
 
-        // 登出
-        document.getElementById('btn-logout').addEventListener('click', () => {
-            if(confirm("確定要登出嗎？")) {
-                signOut(auth).then(() => {
-                    window.location.reload();
-                });
-            }
-        });
-
-        // 購買按鈕
-        document.querySelector('.buy-btn').addEventListener('click', () => {
-            if(auth.currentUser) {
-                showToast("成功加入購物車！");
-                // 模擬1秒後跳轉去購物車頁面
-                setTimeout(() => { window.location.href = "cart.html"; }, 1000);
-            } else {
-                showToast("請先登入會員才能購買！", "error");
-                setTimeout(() => { window.location.href = "login.html"; }, 1500);
-            }
-        });
+        function showToast(message, type='success') {
+            const toastEl = document.getElementById('liveToast');
+            const toastBody = toastEl.querySelector('.toast-body');
+            toastBody.innerHTML = type === 'success' ? `<i class="fa-solid fa-circle-check text-info me-2"></i> ${message}` : `<i class="fa-solid fa-circle-exclamation text-warning me-2"></i> ${message}`;
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

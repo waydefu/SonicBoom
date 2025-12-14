@@ -16,7 +16,6 @@
         }
 
         body {
-            /* 與首頁一致的深藍漸層 */
             background: linear-gradient(135deg, #16222A 0%, #3A6073 100%);
             background-attachment: fixed;
             color: #ffffff;
@@ -113,7 +112,6 @@
             text-shadow: 0 0 10px rgba(0, 198, 255, 0.3);
         }
 
-        /* 結帳按鈕 (與首頁一致) */
         .btn-checkout {
             background: var(--primary-gradient);
             border: none;
@@ -144,14 +142,13 @@
         }
         .trash-btn:hover { color: #ff0000; transform: scale(1.2); text-shadow: 0 0 10px red; }
 
-        /* 空購物車狀態 */
         .empty-cart {
-            display: none; /* 預設隱藏 */
+            display: none;
             text-align: center;
             padding: 80px 20px;
         }
 
-        /* Toast 通知樣式 */
+        /* Toast */
         .toast-container { position: fixed; top: 80px; right: 20px; z-index: 9999; }
         .toast-custom { background: rgba(0, 20, 40, 0.95); color: white; border-left: 4px solid #00c6ff; }
     </style>
@@ -197,20 +194,7 @@
                     <button class="trash-btn" onclick="removeItem('item-1')"><i class="fa-solid fa-trash-can"></i></button>
                 </div>
 
-                <div class="cart-item" id="item-2">
-                    <img src="images/az80.jpg" alt="Product" class="cart-img me-3">
-                    <div class="flex-grow-1">
-                        <h5 class="mb-1 fw-bold">Technics EAH-AZ80</h5>
-                        <p class="text-white-50 small mb-0">顏色：銀色</p>
-                    </div>
-                    <div class="text-end me-4">
-                        <div class="mb-2">$<span class="price">9900</span></div>
-                        <input type="number" class="qty-input" value="1" min="1" onchange="updateTotal()">
-                    </div>
-                    <button class="trash-btn" onclick="removeItem('item-2')"><i class="fa-solid fa-trash-can"></i></button>
                 </div>
-
-            </div>
 
             <div class="col-lg-4">
                 <div class="summary-card">
@@ -218,7 +202,7 @@
                     
                     <div class="summary-row">
                         <span>小計</span>
-                        <span>$<span id="subtotal">20800</span></span>
+                        <span>$<span id="subtotal">10900</span></span>
                     </div>
                     <div class="summary-row">
                         <span>運費</span>
@@ -227,7 +211,7 @@
                     
                     <div class="total-row">
                         <span>總金額</span>
-                        <span>$<span id="final-total">20800</span></span>
+                        <span>$<span id="final-total">10900</span></span>
                     </div>
 
                     <button class="btn-checkout" onclick="checkout()">
@@ -253,8 +237,7 @@
     <div class="toast-container">
         <div id="liveToast" class="toast toast-custom align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
-                <div class="toast-body fs-6">
-                    </div>
+                <div class="toast-body fs-6"></div>
                 <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
             </div>
         </div>
@@ -264,7 +247,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-        // ★ Firebase 設定 ★
         const firebaseConfig = {
             apiKey: "AIzaSyC-LcCfcPYCYAQZ7n45YCe6tCY_jb-ygvI",
             authDomain: "sonicboom-shop.firebaseapp.com",
@@ -278,12 +260,10 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // 登入檢查
         onAuthStateChanged(auth, (user) => {
             const userDisplay = document.getElementById('user-display');
             const btnLogin = document.getElementById('btn-login');
             const btnLogout = document.getElementById('btn-logout');
-
             if (user) {
                 userDisplay.style.display = 'inline-block';
                 userDisplay.innerHTML = `<i class="fa-solid fa-user-astronaut me-2"></i> ${user.email.split('@')[0]}`;
@@ -293,13 +273,9 @@
                 userDisplay.style.display = 'none';
                 btnLogin.style.display = 'inline-block';
                 btnLogout.style.display = 'none';
-                
-                // 為了展示方便，這裡暫時不強制跳轉，但會顯示 Toast 提示
-                setTimeout(() => { showToast("提醒：您尚未登入，請先登入以保存購物車。", "warning"); }, 1000);
             }
         });
 
-        // 登出
         document.getElementById('btn-logout').addEventListener('click', () => {
             if(confirm("確定要登出嗎？")) {
                 signOut(auth).then(() => {
@@ -308,29 +284,27 @@
             }
         });
 
-        // Toast 顯示函式
         window.showToast = function(message, type='success') {
             const toastEl = document.getElementById('liveToast');
             const toastBody = toastEl.querySelector('.toast-body');
-            
             if(type === 'success') {
                 toastBody.innerHTML = `<i class="fa-solid fa-circle-check text-info me-2"></i> ${message}`;
             } else {
                 toastBody.innerHTML = `<i class="fa-solid fa-circle-exclamation text-warning me-2"></i> ${message}`;
             }
-            
             const toast = new bootstrap.Toast(toastEl);
             toast.show();
         }
 
-        // 掛載全域函數
         window.removeItem = removeItem;
         window.updateTotal = updateTotal;
         window.checkout = checkout;
     </script>
 
     <script>
-        // 刪除商品
+        // 頁面載入時先更新一次金額
+        document.addEventListener('DOMContentLoaded', updateTotal);
+
         function removeItem(id) {
             if(confirm('確定要移除此商品嗎？')) {
                 const element = document.getElementById(id);
@@ -340,13 +314,12 @@
                 
                 setTimeout(() => {
                     element.remove();
-                    updateTotal(); // 重新計算總額
-                    checkEmpty();  // 檢查是否空了
+                    updateTotal(); 
+                    checkEmpty();  
                 }, 500);
             }
         }
 
-        // 計算總金額
         function updateTotal() {
             let total = 0;
             const items = document.querySelectorAll('.cart-item');
@@ -361,34 +334,26 @@
             document.getElementById('final-total').innerText = total;
         }
 
-        // 檢查購物車是否為空
         function checkEmpty() {
             const items = document.querySelectorAll('.cart-item');
             if(items.length === 0) {
                 document.getElementById('cart-content').style.display = 'none';
                 document.getElementById('empty-state').style.display = 'block';
-                // 讓空狀態淡入
                 const empty = document.getElementById('empty-state');
                 empty.style.opacity = 0;
                 setTimeout(() => { empty.style.transition = 'opacity 1s'; empty.style.opacity = 1; }, 10);
             }
         }
 
-        // 結帳按鈕
         function checkout() {
             const btn = document.querySelector('.btn-checkout');
-            const originalText = btn.innerHTML;
-            
             btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin me-2"></i> 處理中...';
             btn.disabled = true;
-            
             setTimeout(() => {
                 window.showToast("感謝您的購買！訂單已送出。");
                 btn.innerHTML = '<i class="fa-solid fa-check me-2"></i> 訂單完成';
-                btn.style.background = 'linear-gradient(90deg, #11998e 0%, #38ef7d 100%)'; // 變成綠色
-                
+                btn.style.background = 'linear-gradient(90deg, #11998e 0%, #38ef7d 100%)'; 
                 setTimeout(() => {
-                    // 模擬清空購物車
                     document.getElementById('cart-content').innerHTML = '';
                     checkEmpty();
                 }, 2000);

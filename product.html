@@ -12,13 +12,12 @@
         :root {
             --primary-gradient: linear-gradient(90deg, #00c6ff 0%, #0072ff 100%);
             --glass-bg: rgba(20, 30, 40, 0.7);
-            --neon-glow: 0 0 15px rgba(0, 198, 255, 0.5);
         }
 
+        /* 全域背景：深藍漸層 (與 index.html 統一) */
         body {
-            /* 延續你的背景圖片設定 */
-            background: url('images/背景.jpg') no-repeat center center fixed;
-            background-size: cover;
+            background: linear-gradient(135deg, #16222A 0%, #3A6073 100%);
+            background-attachment: fixed;
             color: #ffffff;
             font-family: 'Noto Sans TC', sans-serif;
             min-height: 100vh;
@@ -39,14 +38,11 @@
         }
 
         /* 產品區塊主容器 */
-        .product-container {
-            margin-top: 50px;
-            margin-bottom: 50px;
-        }
+        .product-container { margin-top: 50px; margin-bottom: 50px; }
 
         /* 左側圖片區 */
         .product-image-card {
-            background: var(--glass-bg);
+            background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 20px;
@@ -65,13 +61,11 @@
             filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
         }
 
-        .product-image-card:hover img {
-            transform: scale(1.05) rotate(-5deg);
-        }
+        .product-image-card:hover img { transform: scale(1.05) rotate(-5deg); }
 
         /* 右側資訊區 */
         .product-info {
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 40px;
@@ -109,6 +103,7 @@
             background: transparent;
             border: 1px solid #555;
             color: white;
+            text-align: center;
         }
         .quantity-selector:focus {
             background: #222;
@@ -132,16 +127,10 @@
             transform: scale(1.05);
             box-shadow: 0 0 25px rgba(0, 198, 255, 0.8);
             color: white;
+            background: linear-gradient(90deg, #00c6ff 20%, #0072ff 100%);
         }
 
-        .btn-outline-light:hover {
-            color: #00c6ff;
-            border-color: #00c6ff;
-            background: transparent;
-            box-shadow: 0 0 10px rgba(0, 198, 255, 0.5);
-        }
-
-        /* 下方詳情 Tabs */
+        /* Tabs */
         .nav-tabs { border-bottom: 1px solid rgba(255,255,255,0.2); }
         .nav-link { color: #aaa; background: transparent; border: none; font-size: 1.1rem; }
         .nav-link.active {
@@ -180,6 +169,11 @@
                 </ul>
                 <div class="d-flex align-items-center gap-3">
                     <span id="user-display" class="badge bg-info bg-opacity-25 border border-info px-3 py-2" style="display:none;"></span>
+                    
+                    <a href="cart.html" class="btn btn-outline-info rounded-circle px-3 py-2" title="我的購物車">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
+
                     <a id="btn-login" class="btn btn-outline-light rounded-pill px-4" href="login.html">登入</a>
                     <button id="btn-logout" class="btn btn-outline-danger rounded-pill px-4" style="display:none;">登出</button>
                 </div>
@@ -237,19 +231,13 @@
                     <div class="row g-3 align-items-end">
                         <div class="col-md-4">
                             <label class="form-label text-white-50 small">數量</label>
-                            <input type="number" class="form-control quantity-selector text-center" value="1" min="1" max="5">
+                            <input type="number" class="form-control quantity-selector" value="1" min="1" max="5">
                         </div>
                         <div class="col-md-8">
                             <button class="btn btn-gradient w-100 buy-btn">
                                 <i class="fa-solid fa-cart-shopping me-2"></i> 加入購物車
                             </button>
                         </div>
-                    </div>
-                    
-                    <div class="mt-3">
-                        <button class="btn btn-outline-light w-100 rounded-pill">
-                            <i class="fa-regular fa-heart me-2"></i> 加入追蹤清單
-                        </button>
                     </div>
                 </div>
             </div>
@@ -309,13 +297,6 @@
                             </div>
                             <p class="text-white-50 mb-0">降噪真的太強了，戴上去完全聽不到旁邊同事在講話，專注工作神器！</p>
                         </div>
-                        <div class="border-bottom border-secondary pb-3 mb-3">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="fw-bold">Emily Chen</h6>
-                                <div class="text-warning"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
-                            </div>
-                            <p class="text-white-50 mb-0">音質很棒，但如果有更多顏色可以選就好了。</p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -331,8 +312,7 @@
     <div class="toast-container">
         <div id="liveToast" class="toast toast-custom align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
-                <div class="toast-body fs-6">
-                    </div>
+                <div class="toast-body fs-6"></div>
                 <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
             </div>
         </div>
@@ -342,7 +322,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-        // ★ Firebase Config (已幫你填好)
+        // Firebase Config
         const firebaseConfig = {
             apiKey: "AIzaSyC-LcCfcPYCYAQZ7n45YCe6tCY_jb-ygvI",
             authDomain: "sonicboom-shop.firebaseapp.com",
@@ -402,6 +382,8 @@
         document.querySelector('.buy-btn').addEventListener('click', () => {
             if(auth.currentUser) {
                 showToast("成功加入購物車！");
+                // 模擬1秒後跳轉去購物車頁面
+                setTimeout(() => { window.location.href = "cart.html"; }, 1000);
             } else {
                 showToast("請先登入會員才能購買！", "error");
                 setTimeout(() => { window.location.href = "login.html"; }, 1500);

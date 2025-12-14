@@ -14,8 +14,6 @@
             --card-bg: rgba(255, 255, 255, 0.08); 
             --neon-glow: 0 0 15px rgba(0, 198, 255, 0.6);
         }
-
-        /* 全域背景：深藍漸層 */
         body {
             background: linear-gradient(135deg, #16222A 0%, #3A6073 100%);
             background-attachment: fixed;
@@ -23,24 +21,18 @@
             font-family: 'Noto Sans TC', sans-serif;
             min-height: 100vh;
         }
-
         .text-muted { color: rgba(255, 255, 255, 0.7) !important; }
-
-        /* 導覽列 */
         .navbar {
             background: rgba(0, 0, 0, 0.6) !important;
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-
         .brand-logo {
             font-family: 'Orbitron', sans-serif;
             letter-spacing: 2px;
             color: #00c6ff;
             text-shadow: 0 0 10px rgba(0, 198, 255, 0.8);
         }
-
-        /* Banner 區域 */
         .hero-section {
             background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.9)), url('images/wh-xm5.jpg');
             background-size: cover;
@@ -51,8 +43,6 @@
             justify-content: center;
             box-shadow: 0 5px 20px rgba(0,0,0,0.5);
         }
-
-        /* 卡片設計 */
         .custom-card {
             background: var(--card-bg);
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -62,17 +52,13 @@
             transition: all 0.4s ease;
             height: 100%;
         }
-
         .custom-card:hover {
             transform: translateY(-10px);
             box-shadow: var(--neon-glow);
             background: rgba(255, 255, 255, 0.12);
             border-color: #00c6ff;
         }
-
-        /* 圖片連結樣式 */
         .card-img-link { display: block; text-decoration: none; border: none; }
-
         .custom-card img {
             transition: transform 0.5s ease;
             height: 250px;
@@ -81,11 +67,8 @@
             padding: 20px;
             background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0) 70%);
         }
-
         .custom-card:hover img { transform: scale(1.08); }
-
         .card-body { display: flex; flex-direction: column; }
-
         .product-title {
             color: #ffffff;
             font-weight: 700;
@@ -96,23 +79,14 @@
             overflow: hidden;
             text-decoration: none;
         }
-        
         .product-title:hover { color: #00c6ff; }
-
-        .price-text {
-            margin-top: auto;
-            padding-top: 15px;
-            padding-bottom: 10px;
-        }
-        
+        .price-text { margin-top: auto; padding-top: 15px; padding-bottom: 10px; }
         .price-tag {
             color: #00c6ff;
             font-weight: bold;
             font-size: 1.5rem;
             text-shadow: 0 0 10px rgba(0, 198, 255, 0.3);
         }
-
-        /* 按鈕優化 */
         .btn-gradient {
             background: var(--primary-gradient);
             border: none;
@@ -127,21 +101,17 @@
             display: inline-block;
             text-align: center;
         }
-
         .btn-gradient:hover {
             transform: scale(1.03);
             box-shadow: 0 0 25px rgba(0, 198, 255, 0.8);
             color: white;
             background: linear-gradient(90deg, #00c6ff 20%, #0072ff 100%);
         }
-
-        /* Toast 通知樣式 */
         .toast-container { position: fixed; top: 80px; right: 20px; z-index: 9999; }
         .toast-custom { background: rgba(0, 20, 40, 0.95); color: white; border-left: 4px solid #00c6ff; }
     </style>
 </head>
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top py-3">
         <div class="container">
             <a class="navbar-brand brand-logo fs-3" href="#"><i class="fa-solid fa-wave-square"></i> SonicBoom</a>
@@ -156,11 +126,7 @@
                 </ul>
                 <div class="d-flex align-items-center gap-3">
                     <span id="user-display" class="badge bg-info bg-opacity-25 border border-info px-3 py-2 text-white" style="display:none;"></span>
-                    
-                    <a href="cart.html" class="btn btn-outline-info rounded-circle px-3 py-2" title="我的購物車">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-
+                    <a href="cart.html" class="btn btn-outline-info rounded-circle px-3 py-2" title="我的購物車"><i class="fa-solid fa-cart-shopping"></i></a>
                     <a id="btn-login" class="btn btn-outline-light rounded-pill px-4" href="login.html">登入</a>
                     <button id="btn-logout" class="btn btn-outline-danger rounded-pill px-4" style="display:none;">登出</button>
                 </div>
@@ -187,33 +153,27 @@
                 <div class="card custom-card h-100">
                     <div class="position-relative">
                         <span class="badge bg-danger position-absolute top-0 start-0 m-3 px-3 py-2 shadow">HOT</span>
-                        <a href="product.html" class="card-img-link">
-                            <img src="images/wh-xm5.jpg" class="card-img-top" alt="Sony WH-1000XM5">
-                        </a>
+                        <a href="product.html?id=wh-xm5" class="card-img-link"><img src="images/wh-xm5.jpg" class="card-img-top" alt="Sony WH-1000XM5"></a>
                     </div>
                     <div class="card-body text-center">
-                        <a href="product.html" class="text-decoration-none">
-                            <h5 class="product-title">Sony WH-1000XM5 無線降噪耳機</h5>
-                        </a>
+                        <a href="product.html?id=wh-xm5" class="text-decoration-none"><h5 class="product-title">Sony WH-1000XM5 無線降噪耳機</h5></a>
                         <p class="text-muted small">業界最強降噪 / 30hr 續航</p>
-                        <div class="price-text">
-                            <h4 class="price-tag">$10,900</h4>
-                        </div>
-                        <a href="product.html" class="btn btn-gradient">查看詳情 / 購買</a>
+                        <div class="price-text"><h4 class="price-tag">$10,900</h4></div>
+                        <a href="product.html?id=wh-xm5" class="btn btn-gradient">查看詳情 / 購買</a>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="card custom-card h-100">
-                    <img src="images/wf-xm5.jpg" class="card-img-top" alt="Sony WF-1000XM5">
+                    <div class="position-relative">
+                        <a href="product.html?id=wf-xm5" class="card-img-link"><img src="images/wf-xm5.jpg" class="card-img-top" alt="Sony WF-1000XM5"></a>
+                    </div>
                     <div class="card-body text-center">
-                        <h5 class="product-title">Sony WF-1000XM5 真無線降噪</h5>
+                        <a href="product.html?id=wf-xm5" class="text-decoration-none"><h5 class="product-title">Sony WF-1000XM5 真無線降噪</h5></a>
                         <p class="text-muted small">雙處理器 / 骨傳導收音技術</p>
-                        <div class="price-text">
-                            <h4 class="price-tag">$8,990</h4>
-                        </div>
-                        <button class="btn btn-gradient buy-btn">加入購物車</button>
+                        <div class="price-text"><h4 class="price-tag">$8,990</h4></div>
+                        <a href="product.html?id=wf-xm5" class="btn btn-gradient">查看詳情 / 購買</a>
                     </div>
                 </div>
             </div>
@@ -222,43 +182,37 @@
                 <div class="card custom-card h-100">
                     <div class="position-relative">
                         <span class="badge bg-success position-absolute top-0 start-0 m-3 px-3 py-2 shadow">SALE</span>
-                        <img src="images/wh-xm4.jpg" class="card-img-top" alt="Sony WH-1000XM4">
+                        <a href="product.html?id=wh-xm4" class="card-img-link"><img src="images/wh-xm4.jpg" class="card-img-top" alt="Sony WH-1000XM4"></a>
                     </div>
                     <div class="card-body text-center">
-                        <h5 class="product-title">Sony WH-1000XM4 經典降噪</h5>
+                        <a href="product.html?id=wh-xm4" class="text-decoration-none"><h5 class="product-title">Sony WH-1000XM4 經典降噪</h5></a>
                         <p class="text-muted small">可折疊設計 / 高CP值首選</p>
-                        <div class="price-text">
-                            <h4 class="price-tag">$7,900 <s class="text-muted fs-6" style="color: #aaa !important;">$8,900</s></h4>
-                        </div>
-                        <button class="btn btn-gradient buy-btn">加入購物車</button>
+                        <div class="price-text"><h4 class="price-tag">$7,900 <s class="text-muted fs-6" style="color: #aaa !important;">$8,900</s></h4></div>
+                        <a href="product.html?id=wh-xm4" class="btn btn-gradient">查看詳情 / 購買</a>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="card custom-card h-100">
-                    <img src="images/az80.jpg" class="card-img-top" alt="Technics AZ80">
+                    <a href="product.html?id=az80" class="card-img-link"><img src="images/az80.jpg" class="card-img-top" alt="Technics AZ80"></a>
                     <div class="card-body text-center">
-                        <h5 class="product-title">Technics EAH-AZ80 旗艦真無線</h5>
+                        <a href="product.html?id=az80" class="text-decoration-none"><h5 class="product-title">Technics EAH-AZ80 旗艦真無線</h5></a>
                         <p class="text-muted small">Hi-Fi 發燒級音質 / 三點連線</p>
-                        <div class="price-text">
-                            <h4 class="price-tag">$6,500</h4>
-                        </div>
-                        <button class="btn btn-gradient buy-btn">加入購物車</button>
+                        <div class="price-text"><h4 class="price-tag">$9,900</h4></div>
+                        <a href="product.html?id=az80" class="btn btn-gradient">查看詳情 / 購買</a>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="card custom-card h-100">
-                    <img src="images/az100.jpg" class="card-img-top" alt="Technics AZ100">
+                    <a href="product.html?id=az100" class="card-img-link"><img src="images/az100.jpg" class="card-img-top" alt="Technics AZ100"></a>
                     <div class="card-body text-center">
-                        <h5 class="product-title">Technics EAH-AZ100 專業監聽</h5>
+                        <a href="product.html?id=az100" class="text-decoration-none"><h5 class="product-title">Technics EAH-AZ100 專業監聽</h5></a>
                         <p class="text-muted small">經典 DJ 風格 / 強勁重低音</p>
-                        <div class="price-text">
-                            <h4 class="price-tag">$9,500</h4>
-                        </div>
-                        <button class="btn btn-gradient buy-btn">加入購物車</button>
+                        <div class="price-text"><h4 class="price-tag">$6,500</h4></div>
+                        <a href="product.html?id=az100" class="btn btn-gradient">查看詳情 / 購買</a>
                     </div>
                 </div>
             </div>
@@ -267,15 +221,13 @@
                 <div class="card custom-card h-100">
                     <div class="position-relative">
                         <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3 px-3 py-2 shadow">最後數量</span>
-                        <img src="images/wf-xm4.jpg" class="card-img-top" alt="Sony WF-XM4">
+                        <a href="product.html?id=wf-xm4" class="card-img-link"><img src="images/wf-xm4.jpg" class="card-img-top" alt="Sony WF-XM4"></a>
                     </div>
                     <div class="card-body text-center">
-                        <h5 class="product-title">Sony WF-1000XM4 降噪豆</h5>
+                        <a href="product.html?id=wf-xm4" class="text-decoration-none"><h5 class="product-title">Sony WF-1000XM4 降噪豆</h5></a>
                         <p class="text-muted small">人體工學 / 整合處理器 V1</p>
-                        <div class="price-text">
-                            <h4 class="price-tag">$5,990</h4>
-                        </div>
-                        <button class="btn btn-gradient buy-btn">加入購物車</button>
+                        <div class="price-text"><h4 class="price-tag">$5,990</h4></div>
+                        <a href="product.html?id=wf-xm4" class="btn btn-gradient">查看詳情 / 購買</a>
                     </div>
                 </div>
             </div>
@@ -288,56 +240,16 @@
         <p class="small text-muted">&copy; 2025 SonicBoom Audio. All Rights Reserved.</p>
     </footer>
 
-    <div class="toast-container">
-        <div id="liveToast" class="toast toast-custom align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="d-flex">
-                <div class="toast-body fs-6"></div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-            </div>
-        </div>
-    </div>
-
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-        // Firebase 設定
-        const firebaseConfig = {
-            apiKey: "AIzaSyC-LcCfcPYCYAQZ7n45YCe6tCY_jb-ygvI",
-            authDomain: "sonicboom-shop.firebaseapp.com",
-            projectId: "sonicboom-shop",
-            storageBucket: "sonicboom-shop.firebasestorage.app",
-            messagingSenderId: "976804831944",
-            appId: "1:976804831944:web:6ede6a95196478bd49bbfd",
-            measurementId: "G-3FEKWL0QXZ"
-        };
-
+        const firebaseConfig = { apiKey: "AIzaSyC-LcCfcPYCYAQZ7n45YCe6tCY_jb-ygvI", authDomain: "sonicboom-shop.firebaseapp.com", projectId: "sonicboom-shop", storageBucket: "sonicboom-shop.firebasestorage.app", messagingSenderId: "976804831944", appId: "1:976804831944:web:6ede6a95196478bd49bbfd", measurementId: "G-3FEKWL0QXZ" };
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
-
-        // Toast 顯示函式
-        function showToast(message) {
-            const toastEl = document.getElementById('liveToast');
-            const toastBody = toastEl.querySelector('.toast-body');
-            toastBody.innerHTML = `<i class="fa-solid fa-circle-check text-info me-2"></i> ${message}`;
-            const toast = new bootstrap.Toast(toastEl);
-            toast.show();
-        }
-
-        function showAlertToast(message) {
-            const toastEl = document.getElementById('liveToast');
-            const toastBody = toastEl.querySelector('.toast-body');
-            toastBody.innerHTML = `<i class="fa-solid fa-circle-exclamation text-warning me-2"></i> ${message}`;
-            const toast = new bootstrap.Toast(toastEl);
-            toast.show();
-        }
-
-        // 登入狀態監聽
         onAuthStateChanged(auth, (user) => {
             const userDisplay = document.getElementById('user-display');
             const btnLogin = document.getElementById('btn-login');
             const btnLogout = document.getElementById('btn-logout');
-
             if (user) {
                 userDisplay.style.display = 'inline-block';
                 userDisplay.innerHTML = `<i class="fa-solid fa-user-astronaut me-2"></i> ${user.email.split('@')[0]}`;
@@ -349,27 +261,7 @@
                 btnLogout.style.display = 'none';
             }
         });
-
-        // 登出
-        document.getElementById('btn-logout').addEventListener('click', () => {
-            if(confirm("確定要登出嗎？")) {
-                signOut(auth).then(() => {
-                    window.location.reload();
-                });
-            }
-        });
-
-        // 購物按鈕
-        document.querySelectorAll('.buy-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                if(auth.currentUser) {
-                    showToast("成功加入購物車！");
-                } else {
-                    showAlertToast("請先登入會員才能購物喔！");
-                    setTimeout(() => { window.location.href = "login.html"; }, 1500);
-                }
-            });
-        });
+        document.getElementById('btn-logout').addEventListener('click', () => { if(confirm("確定要登出嗎？")) { signOut(auth).then(() => { window.location.reload(); }); } });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

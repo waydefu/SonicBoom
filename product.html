@@ -112,7 +112,7 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         
-        // ★★★ 6 款商品詳細資料庫 (規格已修正) ★★★
+        // ★★★ 6 款商品資料庫 (已修正 WF-XM5 顯示與 AZ100 規格) ★★★
         const products = {
             "wh-xm5": { 
                 name: "Sony WH-1000XM5", 
@@ -179,15 +179,15 @@
                 `
             },
             "az100": { 
-                name: "Technics EAH-AZ100", // 這裡模擬 AZ60/AZ40 等級
+                name: "Technics EAH-AZ100", 
                 price: 6500, 
                 img: "images/az100.jpg", 
                 brand: "TECHNICS PRO", 
                 short: "專業監聽耳機", 
-                desc: "承襲 Technics 專業 DJ 耳機技術，提供強勁的重低音與清晰的高頻細節。JustMyVoice 技術確保通話人聲清晰。",
+                desc: "採用獨家 10mm 磁流體振膜技術，提供極致的低頻下潛與快速瞬態反應，專為專業監聽與 DJ 混音設計。",
                 specs: `
                     <tr><td class="text-label">佩戴方式</td><td>入耳式 (In-Ear)</td></tr>
-                    <tr><td class="text-label">驅動單體</td><td>8mm 生物纖維振膜</td></tr>
+                    <tr><td class="text-label">驅動單體</td><td>10mm 磁流體振膜</td></tr>
                     <tr><td class="text-label">重量</td><td>約 6g (單耳)</td></tr>
                     <tr><td class="text-label">電池續航力</td><td>7 小時 (耳機) + 18 小時 (充電盒)</td></tr>
                     <tr><td class="text-label">藍牙版本</td><td>Bluetooth 5.2</td></tr>
